@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://seq13iy3a1yq"]
+
+[ext_resource type="Script" uid="uid://bb5yxjjc8idpp" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://unwhnooi7g2c" path="res://addons/godot-rapier2d/custom_nodes/rapier_rigid_body_2d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://busd3yfk5p1mx" path="res://addons/godot-rapier2d/custom_nodes/rapier_static_body_2d.gd" id="2_0xm2m"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0xm2m"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(3000, 50)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
+size = Vector2(3000, 50)
+
+[node name="Main" type="Node2D" unique_id=1951976216]
+script = ExtResource("1_h2yge")
+
+[node name="StateManager2D" type="StateManager2D" parent="." unique_id=491060533 node_paths=PackedStringArray("root_node")]
+root_node = NodePath("..")
+
+[node name="RigidBody" type="RigidBody2D" parent="." unique_id=1863755865]
+position = Vector2(592, 250)
+script = ExtResource("1_ig7tw")
+metadata/_custom_type_script = "uid://unwhnooi7g2c"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="RigidBody" unique_id=2019390640]
+mesh = SubResource("QuadMesh_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody" unique_id=897678178]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=392126783]
+position = Vector2(583, 631)
+script = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://busd3yfk5p1mx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1719554359]
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor" unique_id=632619956]
+mesh = SubResource("QuadMesh_lquwl")
+
+[node name="UI" type="Node" parent="." unique_id=895508680]
+
+[node name="Control" type="Control" parent="UI" unique_id=930511005]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control" unique_id=278191992]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer" unique_id=982284152]
+layout_mode = 2
+
+[node name="CurrentTickLabel" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer" unique_id=1962974553]
+layout_mode = 2
+text = "Current tick (right to increase) : "
+
+[node name="CurrentTickValue" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer" unique_id=253433462]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/VBoxContainer" unique_id=246358630]
+layout_mode = 2
+
+[node name="TickToLoadLabel" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer2" unique_id=1506782323]
+layout_mode = 2
+text = "Tick to load 
+(up to increase
+down to decrease
+space to load) : "
+
+[node name="TickToLoadValue" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer2" unique_id=799587751]
+layout_mode = 2
+text = "0"
