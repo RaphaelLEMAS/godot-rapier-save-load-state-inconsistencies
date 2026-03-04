@@ -21,6 +21,9 @@ func save_state(tick: int) -> void:
 	saved_states[tick] = current_state
 
 func load_state(tick: int) -> void:
+	if !saved_states.has(tick):
+		print("Cannot load state at tick %d" % tick)
+		return
 	state_manager.import_state(space, saved_states[tick])
 	var loaded_state : String = state_manager.export_state(space, "Json")
 	if loaded_state != saved_states[tick]:

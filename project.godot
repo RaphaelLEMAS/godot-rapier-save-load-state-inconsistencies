@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="rapier_load_state_issue"
+run/main_scene="uid://seq13iy3a1yq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
